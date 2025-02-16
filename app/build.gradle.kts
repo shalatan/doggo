@@ -57,4 +57,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    //networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    //image
+    implementation(libs.coil.compose)
 }

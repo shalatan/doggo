@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.shalatan.doggo.ui.HomeViewModel
 import com.shalatan.doggo.ui.screens.DogsListScreen
 import com.shalatan.doggo.ui.screens.GenerateDogScreen
 import com.shalatan.doggo.ui.screens.HomeScreen
@@ -13,6 +14,7 @@ import com.shalatan.doggo.ui.screens.HomeScreen
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    val viewModel = HomeViewModel()
 
     NavHost(
         navController = navController, startDestination = "home"
@@ -25,7 +27,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
 
         composable(route = "generate") {
-            GenerateDogScreen()
+            GenerateDogScreen(modifier = modifier, viewModel = viewModel)
         }
 
         composable(route = "list") {
