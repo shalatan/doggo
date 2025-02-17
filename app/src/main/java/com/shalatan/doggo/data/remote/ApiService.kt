@@ -1,4 +1,4 @@
-package com.shalatan.doggo.data.networking
+package com.shalatan.doggo.data.remote
 
 import retrofit2.http.GET
 

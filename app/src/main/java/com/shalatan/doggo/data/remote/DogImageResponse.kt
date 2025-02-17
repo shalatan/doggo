@@ -1,4 +1,4 @@
-package com.shalatan.doggo.data.networking
+package com.shalatan.doggo.data.remote
 
 data class DogImageResponse(
     val message: String,

@@ -13,8 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DoggoTheme {
-                AppNavigation()
-
+                AppNavigation(activity = this)
             }
         }
     }

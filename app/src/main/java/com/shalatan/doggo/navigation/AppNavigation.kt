@@ -5,16 +5,21 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.shalatan.doggo.MainActivity
+import com.shalatan.doggo.data.local.DogDatabase
+import com.shalatan.doggo.data.local.DogRepository
 import com.shalatan.doggo.ui.HomeViewModel
 import com.shalatan.doggo.ui.screens.DogsListScreen
 import com.shalatan.doggo.ui.screens.GenerateDogScreen
 import com.shalatan.doggo.ui.screens.HomeScreen
 
-
 @Composable
-fun AppNavigation(modifier: Modifier = Modifier) {
+fun AppNavigation(modifier: Modifier = Modifier, activity: MainActivity) {
     val navController = rememberNavController()
-    val viewModel = HomeViewModel()
+
+    val database = DogDatabase.getInstance(activity)
+    val repository = DogRepository(database.dogDao())
+    val viewModel = HomeViewModel(repository)
 
     NavHost(
         navController = navController, startDestination = "home"
