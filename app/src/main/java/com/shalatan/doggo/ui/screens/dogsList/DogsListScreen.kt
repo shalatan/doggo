@@ -1,6 +1,5 @@
 package com.shalatan.doggo.ui.screens.dogsList
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,9 +23,9 @@ import com.shalatan.doggo.ui.screens.CustomButton
 @Composable
 fun DogsListScreen(modifier: Modifier = Modifier, viewModel: DogsListViewModel) {
 
+    //load all dog images
     viewModel.processIntents(DogsListIntents.FetchAllDogs)
     val state by viewModel.state.collectAsState()
-    Log.e("Custom DogsListScreen: ", "currentState: $state")
 
     Column(
         modifier = modifier.fillMaxSize(),
