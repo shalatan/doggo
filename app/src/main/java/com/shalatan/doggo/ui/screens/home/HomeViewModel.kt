@@ -31,7 +31,7 @@ class HomeViewModel(private val repository: DogRepository) : ViewModel() {
             _state.value = AppState.GeneratingImage
             try {
                 val response = dogApi.getRandomDogImage()
-                Log.e(TAG, "response: $response")
+                Log.e(TAG, "apiResponse: $response")
                 repository.insertDogImage(imageUrl = response.message)
                 _state.value = AppState.DogImageSuccess(response.message)
             } catch (e: Exception) {

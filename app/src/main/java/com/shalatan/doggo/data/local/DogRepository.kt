@@ -4,8 +4,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class DogRepository(private val dao: DogDao) {
+
     suspend fun insertDogImage(imageUrl: String) {
-        dao.insertDogImage(DogEntity(url = imageUrl))
+        if (dao.getDogCount() >= 20) {
+            dao.deleteOldestDog()
+        }
+        dao.insertDog(DogEntity(url = imageUrl))
     }
 
     fun getAllDogImages(): Flow<List<DogEntity>> = flow {
