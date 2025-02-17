@@ -46,7 +46,7 @@ fun DogsListScreen(modifier: Modifier = Modifier, viewModel: DogsListViewModel) 
                 }
             }
 
-            DogsListState.Idle -> {
+            DogsListState.Empty -> {
                 Text("No dog images found")
             }
         }

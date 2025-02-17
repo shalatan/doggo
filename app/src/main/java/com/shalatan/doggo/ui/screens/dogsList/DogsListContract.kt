@@ -8,6 +8,6 @@ sealed class DogsListIntents {
 }
 
 sealed class DogsListState {
-    data object Idle : DogsListState()
+    data object Empty : DogsListState()
     data class AllDogImages(val images: List<DogEntity>) : DogsListState()
 }

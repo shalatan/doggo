@@ -23,7 +23,6 @@ class HomeViewModel(private val repository: DogRepository) : ViewModel() {
     fun processIntents(intents: AppIntents) {
         when (intents) {
             AppIntents.FetchDogImage -> fetchDogImage()
-            AppIntents.ClearData -> clearData()
         }
     }
 
@@ -39,20 +38,5 @@ class HomeViewModel(private val repository: DogRepository) : ViewModel() {
                 _state.value = AppState.Error("Error fetching image")
             }
         }
-    }
-
-//    private fun fetchAllImages() {
-//        viewModelScope.launch {
-//            repository.getAllDogImages().catch {
-//                Log.e(TAG, "errorFetchingDogImages: ${it.message}")
-//            }.collect { dogEntities ->
-//                _state.value = AppState.DogImages(dogEntities)
-//                Log.d(TAG, "fetchingDogImaged: ${dogEntities.size}")
-//            }
-//        }
-//    }
-
-    private fun clearData() {
-
     }
 }

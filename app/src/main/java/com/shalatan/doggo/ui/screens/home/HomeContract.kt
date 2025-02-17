@@ -2,7 +2,6 @@ package com.shalatan.doggo.ui.screens.home
 
 sealed class AppIntents {
     data object FetchDogImage : AppIntents()
-    data object ClearData : AppIntents()
 }
 
 sealed class AppState {

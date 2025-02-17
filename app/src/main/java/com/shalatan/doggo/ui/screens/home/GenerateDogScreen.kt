@@ -1,6 +1,5 @@
 package com.shalatan.doggo.ui.screens.home
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,31 +27,35 @@ fun GenerateDogScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Spacer(modifier = Modifier.height(160.dp))
+            val contentHeightModifier = Modifier.height(240.dp)
             when (uiState) {
                 is AppState.DogImageSuccess -> AsyncImage(
                     model = (uiState as AppState.DogImageSuccess).imageUrl,
                     contentScale = ContentScale.Crop,
                     contentDescription = "dog image",
-                    modifier = Modifier.size(240.dp)
+                    modifier = contentHeightModifier
                 )
 
                 is AppState.GeneratingImage -> {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(modifier = contentHeightModifier)
                 }
 
                 is AppState.Error -> {
-                    Text("Error fetching image")
+                    Text(text = "Error fetching image", modifier = contentHeightModifier)
                 }
 
                 is AppState.Idle -> {
-                    Text("Click button to generate image")
+                    Text(text = "Click button to generate image", modifier = contentHeightModifier)
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            CustomButton(text = "Generate") {
+            Spacer(modifier = Modifier.height(64.dp))
+            CustomButton(
+                modifier = Modifier,
+                text = "Generate Dog!"
+            ) {
                 viewModel.processIntents(AppIntents.FetchDogImage)
             }
         }

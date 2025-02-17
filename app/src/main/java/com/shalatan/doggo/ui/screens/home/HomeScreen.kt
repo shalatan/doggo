@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,11 +22,11 @@ fun HomeScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CustomButton(text = "Generate") {
+        CustomButton(text = "Generate Dogs!") {
             navigateToGenerate.invoke()
         }
         Spacer(modifier = Modifier.height(16.dp))
-        CustomButton(text = "List View") {
+        CustomButton(text = "My Recently Generated Dogs!") {
             navigateToListView.invoke()
         }
     }

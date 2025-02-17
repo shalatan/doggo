@@ -12,7 +12,7 @@ class DogsListViewModel(private val repository: DogRepository) : ViewModel() {
 
     private val TAG = "Custom: DogsListViewModel"
 
-    private val _state = MutableStateFlow<DogsListState>(DogsListState.Idle)
+    private val _state = MutableStateFlow<DogsListState>(DogsListState.Empty)
     var state = _state.asStateFlow()
 
     fun processIntents(intents: DogsListIntents) {
@@ -27,18 +27,18 @@ class DogsListViewModel(private val repository: DogRepository) : ViewModel() {
             repository.getAllDogImages()
                 .collect { dogEntities ->
                     if (dogEntities.isEmpty()) {
-                        _state.value = DogsListState.Idle
+                        _state.value = DogsListState.Empty
                     } else {
                         _state.value = DogsListState.AllDogImages(dogEntities)
                     }
-                    Log.d(TAG, "fetchingDogImaged: ${dogEntities.size}")
+                    Log.d(TAG, "fetchedDogImages: ${dogEntities.size}")
                 }
         }
     }
 
     private fun clearData() {
         viewModelScope.launch {
-            _state.value = DogsListState.Idle
+            _state.value = DogsListState.Empty
             repository.clearDatabase()
         }
     }

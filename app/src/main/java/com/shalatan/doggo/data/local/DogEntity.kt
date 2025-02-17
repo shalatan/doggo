@@ -5,7 +5,5 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dog_db")
 data class DogEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val url: String
+    @PrimaryKey(autoGenerate = true) val id: Int = 0, val url: String
 )
