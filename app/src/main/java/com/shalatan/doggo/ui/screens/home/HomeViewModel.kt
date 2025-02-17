@@ -1,4 +1,4 @@
-package com.shalatan.doggo.ui
+package com.shalatan.doggo.ui.screens.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -8,6 +8,7 @@ import com.shalatan.doggo.data.remote.ApiService
 import com.shalatan.doggo.data.remote.RetrofitClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: DogRepository) : ViewModel() {
@@ -39,6 +40,17 @@ class HomeViewModel(private val repository: DogRepository) : ViewModel() {
             }
         }
     }
+
+//    private fun fetchAllImages() {
+//        viewModelScope.launch {
+//            repository.getAllDogImages().catch {
+//                Log.e(TAG, "errorFetchingDogImages: ${it.message}")
+//            }.collect { dogEntities ->
+//                _state.value = AppState.DogImages(dogEntities)
+//                Log.d(TAG, "fetchingDogImaged: ${dogEntities.size}")
+//            }
+//        }
+//    }
 
     private fun clearData() {
 

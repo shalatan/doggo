@@ -1,4 +1,4 @@
-package com.shalatan.doggo.ui.screens
+package com.shalatan.doggo.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.shalatan.doggo.ui.screens.CustomButton
 import com.shalatan.doggo.ui.theme.DoggoTheme
 
 @Composable
@@ -18,7 +19,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier, navigateToGenerate: () -> Unit, navigateToListView: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -30,14 +31,6 @@ fun HomeScreen(
             navigateToListView.invoke()
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
 
 @Preview(showBackground = true)

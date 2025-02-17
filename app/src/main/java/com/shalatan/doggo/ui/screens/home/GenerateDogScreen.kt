@@ -1,4 +1,4 @@
-package com.shalatan.doggo.ui.screens
+package com.shalatan.doggo.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,11 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.shalatan.doggo.ui.AppIntents
-import com.shalatan.doggo.ui.AppState
-import com.shalatan.doggo.ui.HomeViewModel
+import com.shalatan.doggo.ui.screens.CustomButton
 
 @Composable
 fun GenerateDogScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
@@ -35,6 +34,7 @@ fun GenerateDogScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
             when (uiState) {
                 is AppState.DogImageSuccess -> AsyncImage(
                     model = (uiState as AppState.DogImageSuccess).imageUrl,
+                    contentScale = ContentScale.Crop,
                     contentDescription = "dog image",
                     modifier = Modifier.size(240.dp)
                 )
@@ -50,8 +50,6 @@ fun GenerateDogScreen(modifier: Modifier = Modifier, viewModel: HomeViewModel) {
                 is AppState.Idle -> {
                     Text("Click button to generate image")
                 }
-
-                else -> {}
             }
             Spacer(modifier = Modifier.height(16.dp))
             CustomButton(text = "Generate") {

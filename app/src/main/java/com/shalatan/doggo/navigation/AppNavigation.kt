@@ -8,10 +8,11 @@ import androidx.navigation.compose.rememberNavController
 import com.shalatan.doggo.MainActivity
 import com.shalatan.doggo.data.local.DogDatabase
 import com.shalatan.doggo.data.local.DogRepository
-import com.shalatan.doggo.ui.HomeViewModel
-import com.shalatan.doggo.ui.screens.DogsListScreen
-import com.shalatan.doggo.ui.screens.GenerateDogScreen
-import com.shalatan.doggo.ui.screens.HomeScreen
+import com.shalatan.doggo.ui.screens.home.HomeViewModel
+import com.shalatan.doggo.ui.screens.dogsList.DogsListScreen
+import com.shalatan.doggo.ui.screens.dogsList.DogsListViewModel
+import com.shalatan.doggo.ui.screens.home.GenerateDogScreen
+import com.shalatan.doggo.ui.screens.home.HomeScreen
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier, activity: MainActivity) {
@@ -20,15 +21,14 @@ fun AppNavigation(modifier: Modifier = Modifier, activity: MainActivity) {
     val database = DogDatabase.getInstance(activity)
     val repository = DogRepository(database.dogDao())
     val viewModel = HomeViewModel(repository)
+    val dogsListViewModel = DogsListViewModel(repository)
 
     NavHost(
         navController = navController, startDestination = "home"
     ) {
         composable(route = "home") {
-            HomeScreen(
-                navigateToGenerate = { navController.navigate("generate") },
-                navigateToListView = { navController.navigate("list") }
-            )
+            HomeScreen(navigateToGenerate = { navController.navigate("generate") },
+                navigateToListView = { navController.navigate("list") })
         }
 
         composable(route = "generate") {
@@ -36,7 +36,7 @@ fun AppNavigation(modifier: Modifier = Modifier, activity: MainActivity) {
         }
 
         composable(route = "list") {
-            DogsListScreen()
+            DogsListScreen(modifier = modifier, viewModel = dogsListViewModel)
         }
     }
 }
